@@ -16,37 +16,54 @@ public class ClassMainAction implements KetchbyAction {
 		
 		request.setCharacterEncoding("utf-8");
 		
+		int a_no = 6004;
 		HttpSession session = request.getSession();
+		if(session.getAttribute("a_no")!= null) {
+			a_no= (int)session.getAttribute("a_no"); 
+		}
+	    
 		String keyword = null;
-		String a_level = request.getParameter("a_level");
-		String cl_level = request.getParameter("cl_level");
+		String a_level = null;
+		String cl_level = null;
+		String bca_name = null;
 		
 		if(session.getAttribute("keyword")!=null) {
-			keyword = request.getParameter("keyword");
+			keyword = (String)request.getAttribute("keyword");
 		}
 		
 		if(request.getParameter("keyword")!= null) {
 			keyword = request.getParameter("keyword");
 		}
 		
+		if(request.getParameter("bca_name")!= null) {
+			bca_name = request.getParameter("bca_name");
+		}
+		
 		if(request.getParameter("a_level")!= null) {
-			keyword = request.getParameter("keyword");
+			a_level = request.getParameter("a_level");
 		}
 		
 		if(request.getParameter("cl_level")!= null) {
-			keyword = request.getParameter("keyword");
+			cl_level = request.getParameter("cl_level");
 		}
+		
 		
 		System.out.println("keyword:"+keyword);
 		System.out.println("a_level:"+a_level);
 		System.out.println("cl_level:"+cl_level);
+		System.out.println("bca_name:"+bca_name);
 		
 		session.setAttribute("keyword", keyword);
 
-		int bca_no = Integer.parseInt(request.getParameter("bca_no"));
+		int bca_no = 1001;
+		if(request.getParameter("bca_no") !=null) {
+			bca_no = Integer.parseInt (request.getParameter("bca_no"));
+		}
+		
 		ClassMainDAO dao = ClassMainDAO.getInstance();
-		request.setAttribute("list", dao.findAllClass(bca_no, keyword, a_level, cl_level));
+		request.setAttribute("list", dao.findAllClass(bca_no, bca_name, keyword, a_level, cl_level));
 		request.setAttribute("bca_no", bca_no);
+		request.setAttribute("bca_name", bca_name);
 		return "classmain.jsp";
 	}
 }

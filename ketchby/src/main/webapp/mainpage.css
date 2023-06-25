@@ -23,7 +23,7 @@
 
 .carousel-indicators {
   position: absolute;
-  width: 20px;
+  width: 30px;
   bottom: 15px;
   left: 50%;
   transform: translateX(-50%);
@@ -47,47 +47,45 @@
 
 
 .indicators button {
-  width: 8px;
-  height: 5px;
-  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  background-color: lightgray;
   border: none;
-  background-color: gray;
-  margin: 5px;
+  border-radius: 50%;
+  margin-right: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.indicators button:hover {
+  background-color: darkgray;
   cursor: pointer;
 }
 
+.carousel-item {
+  transition: opacity 0.5s ease;
+}
+
+.carousel-item:not(.active) {
+  opacity: 0;
+  pointer-events: none;
+}
+
 .indicators button.active {
-  background-color: rgba(0, 131, 117, 1);
-}
-
-.indicators button:focus {
-  outline: none;
+  background-color: darkgray;
 }
 
 
-.carousel-inner {
-  position: relative;
-}
 
-.carousel-caption {
-  position: absolute;
-  bottom: 20px; 
-  transform: translateX(10); 
-  color: white;
-  text-align: left;
-}
 
-.carousel-caption h5,
-.carousel-caption p {
-  text-align: left;
+.navbar {
+  padding: 10px 20px;
 }
-
 
 .navbar-nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-grow: 1;
+  margin: 0 auto; /* Add this line to center the navigation */
 }
 
 .nav-item {
@@ -96,21 +94,28 @@
 
 .nav-link {
   display: inline-block;
+  width: 294px;
+  height: 64px;
   padding: 10px 20px;
   border-radius: 8px;
-  background-color: rgba(245, 247, 247, 1);
-  font-size: 16px;
+  font-size: 20px;
   font-weight: bold;
-  color: dark gray;
-  text-decoration: none;
+  color: rgba(0, 131, 117, 1)!important;
   transition: background-color 0.3s ease;
-  margin: 2px;
+  text-align: center;
 }
 
 
 .nav-link:hover {
   background-color: rgba(220, 220, 220, 1);
 }
+
+
+
+
+
+
+
 
 .container {
   width: 100%;
@@ -153,7 +158,8 @@
 .container:nth-of-type(1),
 .container:nth-of-type(2),
 .container:nth-of-type(3),
-.container:nth-of-type(4)
+.container:nth-of-type(4),
+.container:nth-of-type(5)
  {
   margin-bottom: 3cm;
 }
@@ -175,19 +181,16 @@
   height: auto;
   transform: translateX(0);
   transition: transform 0.5s ease;
+  
 }
 
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
-.card-img {
-  width: 100%;
-  height: auto;
-}
-
 .card-body {
   padding: 20px;
+  height: 219.3px;
 }
 
 .card-category {
@@ -203,9 +206,13 @@
 .card-title {
   color:rgba(0, 131, 117, 1);
   font-weight: bold;
-  font-size:20px;
+  font-size:18px;
   text-decoration: none;
-  margin-bottom: 10px;
+  display: block;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .btn {
@@ -218,15 +225,15 @@
 .btn_cl_level {
   border-radius: 12px;
   color: #fff;
-  padding: 5px 10px; /* smaller buttons */
+  padding: 5px 10px; 
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 14px; /* smaller font */
+  font-size: 9px; 
   margin: 2px;
   transition-duration: 0.4s;
   cursor: pointer;
-  border: none; /* removed border */
+  border: none; 
 }
 
 

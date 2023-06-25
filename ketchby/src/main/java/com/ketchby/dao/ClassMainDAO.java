@@ -23,12 +23,16 @@ public class ClassMainDAO {
 	}
 
 	
-	public ArrayList<MainClassVO> findAllClass(int bca_no, String keyword, String a_level, String cl_level) {
+	public ArrayList<MainClassVO> findAllClass(int bca_no, String bca_name, String keyword, String a_level, String cl_level) {
 		String sql = "select distinct c.cl_no, c.cl_title, SUBSTR(c.cl_addr, 1, instr(c.cl_addr, ' ', 1, 2) - 1) as city_and_district,  "
 				+ "c.cl_img, c.cl_level, c.cl_price, b.bca_name, s.sca_name, a.a_level  "
 				+ "from class c, account a, scategory s, bcategory b "
 				+ "where c.a_no = a.a_no and c.sca_no = s.sca_no and b.bca_no = s.bca_no  ";
 				
+				if (bca_name != null && !bca_name.isEmpty()) {
+			        sql += "and b.bca_name = '"+bca_name+"' ";
+			    }
+		
 				if (keyword != null && !keyword.isEmpty()) {
 				    sql += "and c.cl_title like '%" + keyword + "%' or sca_name like '%" + keyword + "%'";
 				}
@@ -41,7 +45,7 @@ public class ClassMainDAO {
 				        sql += "and c.cl_level = '"+cl_level+"' ";
 				    }
 		
-				sql+= "and b.bca_no = ? ";
+				sql+= "and b.bca_no = ?";
 
 		System.out.println("sql:" + sql);
 

@@ -13,7 +13,7 @@
 	int bca_no = Integer.parseInt( request.getParameter("bca_no"));
 	
 	ClassMainDAO dao = ClassMainDAO.getInstance();
-	ArrayList<MainClassVO> list = dao.findAllClass(bca_no, null, a_level, cl_level);
+	ArrayList<MainClassVO> list = dao.findAllClass(bca_no, null, null, a_level, cl_level);
 	Gson gson = new Gson();
 	String str = gson.toJson(list);
 
